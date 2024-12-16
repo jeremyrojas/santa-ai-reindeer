@@ -1,16 +1,32 @@
+// scoring-system.ts
+
+// Define the types first
 type TraitScores = {
   speed: number;
   precision: number;
   community: number;
   strategy: number;
+  social: number;
 };
 
-// Simple +2 scoring for primary traits
-export const ANSWER_WEIGHTS = {
+type AnswerWeight = {
+  [trait in keyof TraitScores]?: number;
+};
+
+type QuestionWeights = {
+  [key: string]: AnswerWeight;
+};
+
+type AnswerWeights = {
+  [key: string]: QuestionWeights;
+};
+
+// Export the weights with proper typing
+export const ANSWER_WEIGHTS: AnswerWeights = {
   Q1: {
     A: { speed: 2 },
     B: { precision: 2 },
-    C: { community: 2 },
+    C: { social: 1, community: 1 },
     D: { strategy: 2 }
   },
   Q2: {
@@ -28,85 +44,109 @@ export const ANSWER_WEIGHTS = {
   Q4: {
     A: { speed: 2 },
     B: { precision: 2 },
-    C: { community: 2 },
+    C: { social: 2 },
     D: { strategy: 2 }
   },
   Q5: {
     A: { speed: 2 },
     B: { precision: 2 },
-    C: { community: 2 },
+    C: { social: 2 },
     D: { strategy: 2 }
   },
   Q6: {
     A: { speed: 2 },
     B: { precision: 2 },
-    C: { community: 2 },
+    C: { social: 2 },
+    D: { strategy: 2 }
+  },
+  Q7: {
+    A: { speed: 2 },
+    B: { precision: 2 },
+    C: { social: 2 },
     D: { strategy: 2 }
   }
 };
 
 export function calculateResult(answers: Record<number, string>): string {
-  // Initialize scores
   const scores: TraitScores = {
     speed: 0,
     precision: 0,
     community: 0,
-    strategy: 0
+    strategy: 0,
+    social: 0
   };
 
-  // Calculate total scores
+  // Calculate scores (same as before)
   Object.entries(answers).forEach(([question, answer]) => {
-    const questionNum = `Q${question}` as keyof typeof ANSWER_WEIGHTS;
-    const weights = ANSWER_WEIGHTS[questionNum][answer as keyof typeof ANSWER_WEIGHTS[typeof questionNum]];
+    const questionNum = `Q${question}`;
+    const weights = ANSWER_WEIGHTS[questionNum]?.[answer] || {};
     
     Object.entries(weights).forEach(([trait, value]) => {
-      scores[trait as keyof TraitScores] += value;
+      if (trait in scores) {
+        scores[trait as keyof TraitScores] += value;
+      }
     });
   });
 
-  // Find highest and second highest traits
   const sortedTraits = Object.entries(scores)
     .sort(([, a], [, b]) => b - a);
   
-  const [primaryTrait] = sortedTraits[0];
-  const [secondaryTrait] = sortedTraits[1];
+  const [primaryTrait, primaryScore] = sortedTraits[0];
+  const [secondaryTrait, secondaryScore] = sortedTraits[1];
 
-  // Determine reindeer based on trait combinations
-  if (primaryTrait === 'speed' && secondaryTrait === 'community') {
-    return 'DASHER';
+  // Keep working personalities exactly the same
+  if (primaryTrait === 'social' && scores.community >= 2) {
+    return 'DANCER';
   }
-  if (primaryTrait === 'precision' && secondaryTrait === 'strategy') {
-    return 'PRANCER';
-  }
-  if (primaryTrait === 'community' && secondaryTrait === 'speed') {
+
+  if (primaryTrait === 'community' && scores.speed > 0 && scores.community > scores.speed) {
     return 'CUPID';
   }
-  if (primaryTrait === 'strategy' && secondaryTrait === 'precision') {
+
+  // Modified BLITZEN check - make it trigger before DASHER
+  if (scores.speed >= 6 && scores.community >= 4 && Math.abs(scores.speed - scores.community) <= 4) {
+    return 'BLITZEN';
+  }
+
+  if (primaryTrait === 'speed' && secondaryTrait !== 'strategy') {
+    return 'DASHER';
+  }
+
+  if (primaryTrait === 'precision' && scores.community > 0 && scores.strategy <= scores.community) {
+    return 'RUDOLPH';
+  }
+
+  if (primaryTrait === 'precision' && scores.strategy > scores.community) {
+    return 'PRANCER';
+  }
+
+  if (primaryTrait === 'strategy' && scores.precision >= 2) {
     return 'DONNER';
   }
 
-  // Check for balanced traits
-  const difference = sortedTraits[0][1] - sortedTraits[1][1];
-  if (difference <= 2) { // Consider traits balanced if within 2 points
-    if ((primaryTrait === 'speed' && secondaryTrait === 'community') ||
-        (primaryTrait === 'community' && secondaryTrait === 'speed')) {
-      return 'BLITZEN';
-    }
-    if ((primaryTrait === 'precision' && secondaryTrait === 'community') ||
-        (primaryTrait === 'community' && secondaryTrait === 'precision')) {
-      return 'RUDOLPH';
-    }
-    if ((primaryTrait === 'strategy' && secondaryTrait === 'speed') ||
-        (primaryTrait === 'speed' && secondaryTrait === 'strategy')) {
-      return 'VIXEN';
-    }
+  if ((primaryTrait === 'strategy' && secondaryTrait === 'speed') ||
+      (primaryTrait === 'speed' && secondaryTrait === 'strategy') && primaryScore - secondaryScore <= 4) {
+    return 'VIXEN';
   }
 
-  // If all traits are within 3 points of each other
-  if (sortedTraits[0][1] - sortedTraits[3][1] <= 3) {
+  // Check for COMET - true versatility
+  const nonZeroTraits = Object.values(scores).filter(score => score > 0).length;
+  const maxScore = Math.max(...Object.values(scores));
+  const minPositiveScore = Math.min(...Object.values(scores).filter(score => score > 0));
+  
+  // For COMET: need at least 4 traits with points, and max difference of 2 between any non-zero scores
+  if (nonZeroTraits >= 4 && (maxScore - minPositiveScore <= 2)) {
     return 'COMET';
   }
 
-  // Default fallback based on highest trait
-  return 'COMET';
-} 
+  // Fallback unchanged
+  const traitToReindeer: Record<string, string> = {
+    'speed': 'DASHER',
+    'precision': 'PRANCER',
+    'community': 'CUPID',
+    'strategy': 'DONNER',
+    'social': 'DANCER'
+  };
+
+  return traitToReindeer[primaryTrait] || 'COMET';
+}

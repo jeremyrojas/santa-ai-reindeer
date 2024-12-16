@@ -60,10 +60,20 @@ export const QUESTIONS = [
     id: 6,
     text: "After launching a successful project, you:",
     options: [
-      { id: "A", text: "Already halfway through the next one (started during the last project's launch)" },
+      { id: "A", text: "Already deployed three new features to the next project (sleep is overrated)" },
       { id: "B", text: "Write the world's most detailed documentation (future you will thank you)" },
-      { id: "C", text: "Make a thread: 'How I Built This (1/267)'" },
-      { id: "D", text: "Plan v2.0 while pretending to take a break" }
+      { id: "C", text: "Make a celebratory thread: 'How We Built This (1/42) 🎉'" },
+      { id: "D", text: "Start planning v2.0 (so much for that break you promised yourself)" }
+    ]
+  },
+  {
+    id: 7,
+    text: "Your coding style is best described as:",
+    options: [
+      { id: "A", text: "Sprint mode: coffee in, code out ⚡" },
+      { id: "B", text: "Methodical: every line has its place" },
+      { id: "C", text: "Social: turning pair programming into party programming! 💃" },
+      { id: "D", text: "Structured: following the master plan" }
     ]
   }
 ];
@@ -124,11 +134,18 @@ export const RESULTS = {
     description: "Switching between AI tools faster than Santa does chimneys! You're fluent in every framework (even the ones that launch tomorrow). Your brain is like GPT-4, but with better uptime.",
     traits: ["Tool master", "Quick learner", "Adaptable builder"],
     shareText: "I'm Comet, the versatile maven! 🌠 Take the quiz to find your AI builder reindeer spirit!"
+  },
+  DANCER: {
+    id: "DANCER",
+    title: "Dancer - The Social Developer",
+    description: "You turn debugging sessions into dance parties and hackathons into celebration marathons! Your IDE has a built-in party mode, and your commit messages deserve their own DJ set. You're proof that even AI development can be a social celebration!",
+    traits: ["Celebration master", "Team energizer", "Social coder"],
+    shareText: "I'm Dancer, the party starter of AI builders! 💃 Take the quiz to find your AI builder reindeer spirit!"
   }
 };
 
 export const QUIZ_CONFIG = {
-  totalQuestions: 6,
+  totalQuestions: 7,
   showProgressBar: true,
   showQuestionNumber: true,
   allowBack: false,

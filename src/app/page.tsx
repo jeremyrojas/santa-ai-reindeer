@@ -1,101 +1,145 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
+import { INTRO_TEXT, QUESTIONS, RESULTS, QUIZ_CONFIG, END_TEXT } from '@/lib/quiz-content';
+import { calculateResult } from '@/lib/scoring-system';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [started, setStarted] = useState(false);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [result, setResult] = useState<string | null>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleStart = () => {
+    setStarted(true);
+    setCurrentQuestion(1);
+  };
+
+  const handleAnswer = (questionId: number, answerId: string) => {
+    setAnswers(prev => ({ ...prev, [questionId]: answerId }));
+    
+    if (questionId === QUIZ_CONFIG.totalQuestions) {
+      const reindeerResult = calculateResult(answers);
+      setResult(reindeerResult);
+    } else {
+      setCurrentQuestion(questionId + 1);
+    }
+  };
+
+  const handleRetake = () => {
+    setStarted(false);
+    setCurrentQuestion(0);
+    setAnswers({});
+    setResult(null);
+  };
+
+  const handleShare = (platform: string) => {
+    const result = RESULTS[result as keyof typeof RESULTS];
+    const shareText = result?.shareText || '';
+    const shareUrl = `${QUIZ_CONFIG.shareBaseUrl}`;
+    
+    switch (platform) {
+      case 'twitter':
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}&hashtags=${QUIZ_CONFIG.shareHashtag}`);
+        break;
+      case 'facebook':
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareText)}`);
+        break;
+      case 'linkedin':
+        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(result?.title || '')}&summary=${encodeURIComponent(shareText)}`);
+        break;
+      case 'whatsapp':
+        window.open(`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`);
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(shareText + ' ' + shareUrl);
+        break;
+    }
+  };
+
+  if (!started) {
+    return (
+      <div className="quiz-container">
+        <h1 className="quiz-header">{INTRO_TEXT.title}</h1>
+        <p className="quiz-description">{INTRO_TEXT.description}</p>
+        <div className="text-center">
+          <button onClick={handleStart} className="start-button">
+            {INTRO_TEXT.startButton}
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+    );
+  }
+
+  if (result) {
+    const reindeerResult = RESULTS[result as keyof typeof RESULTS];
+    return (
+      <div className="quiz-container result-container">
+        <h2 className="result-title">{reindeerResult.title}</h2>
+        <div className="traits-list">
+          {reindeerResult.traits.map((trait, index) => (
+            <span key={index} className="trait-tag">{trait}</span>
+          ))}
+        </div>
+        <p className="result-description">{reindeerResult.description}</p>
+        
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <button onClick={() => handleShare('twitter')} className="share-button">
+            Share on X/Twitter
+          </button>
+          <button onClick={() => handleShare('facebook')} className="share-button">
+            Share on Facebook
+          </button>
+          <button onClick={() => handleShare('linkedin')} className="share-button">
+            Share on LinkedIn
+          </button>
+          <button onClick={() => handleShare('whatsapp')} className="share-button">
+            Share on WhatsApp
+          </button>
+          <button onClick={() => handleShare('copy')} className="share-button">
+            Copy Link
+          </button>
+        </div>
+        
+        <button onClick={handleRetake} className="retake-button">
+          {END_TEXT.retakeButton}
+        </button>
+      </div>
+    );
+  }
+
+  const question = QUESTIONS.find(q => q.id === currentQuestion);
+  if (!question) return null;
+
+  const progress = (currentQuestion / QUIZ_CONFIG.totalQuestions) * 100;
+
+  return (
+    <div className="quiz-container">
+      {QUIZ_CONFIG.showQuestionNumber && (
+        <div className="question-number">
+          Question {currentQuestion} of {QUIZ_CONFIG.totalQuestions}
+        </div>
+      )}
+      
+      {QUIZ_CONFIG.showProgressBar && (
+        <div className="progress-bar">
+          <div className="progress-fill" style={{ width: `${progress}%` }} />
+        </div>
+      )}
+
+      <h2 className="question-text">{question.text}</h2>
+      
+      <div>
+        {question.options.map((option) => (
+          <button
+            key={option.id}
+            onClick={() => handleAnswer(question.id, option.id)}
+            className={`option-button ${answers[question.id] === option.id ? 'selected' : ''}`}
+          >
+            {option.text}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

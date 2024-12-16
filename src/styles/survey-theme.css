@@ -1,0 +1,253 @@
+:root {
+  --santa-red: #FF4646;
+  --winter-blue: #4AA9FF;
+  --elf-green: #4CAF84;
+  --snow-yellow: #FFD700;
+  --ice-blue: #E8F4FF;
+  --snow-white: #FFFFFF;
+  --night-blue: #1B3F8B;
+}
+
+.survey-container {
+  /* Playful snow-like background */
+  background: linear-gradient(135deg, 
+    var(--ice-blue) 0%, 
+    rgba(76, 175, 132, 0.05) 100%  /* Very subtle green tint */
+  );
+  border-radius: 20px;
+  padding: 2rem;
+  
+  /* Soft shadow for depth */
+  box-shadow: 0 8px 32px rgba(27, 63, 139, 0.1);
+  position: relative;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.survey-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 50% 50%, white 0%, transparent 8%),
+    radial-gradient(circle at 30% 20%, white 0%, transparent 6%),
+    radial-gradient(circle at 70% 40%, white 0%, transparent 10%);
+  background-size: 100px 100px;
+  animation: snowfall 20s linear infinite;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.question-card {
+  background: linear-gradient(145deg, var(--snow-white), var(--ice-blue));
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  
+  /* Subtle border with holiday colors */
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  
+  /* Playful hover effect */
+  transition: transform 0.2s ease;
+}
+
+.question-card:hover {
+  transform: translateY(-2px);
+}
+
+.survey-button {
+  background: var(--santa-red);
+  color: var(--snow-white);
+  padding: 12px 24px;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  
+  /* Festive gradient */
+  background: linear-gradient(135deg, var(--santa-red), #FF6B6B);
+  
+  /* Playful shadow */
+  box-shadow: 0 4px 15px rgba(255, 70, 70, 0.3);
+  
+  transition: all 0.2s ease;
+}
+
+.survey-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 70, 70, 0.4);
+}
+
+/* Progress bar styling */
+.progress-bar {
+  background: rgba(255, 255, 255, 0.3);  /* Light grey background */
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto 2rem auto;
+  max-width: 600px;
+  height: 8px;
+}
+
+.progress-fill {
+  background: var(--elf-green);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+/* Option selections */
+.option-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 1.125rem;
+  padding: 1.25rem 1.5rem;
+  margin: 0.75rem 0;
+  
+  /* Replace stark white with frosted glass effect */
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  
+  /* Subtle shadow */
+  box-shadow: 0 2px 10px rgba(27, 63, 139, 0.05);
+  
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.option-card:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 70, 70, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(27, 63, 139, 0.1);
+}
+
+.option-card.selected {
+  background: rgba(76, 175, 132, 0.08);  /* Very light green */
+  border-color: var(--elf-green);
+  font-weight: 600;
+  box-shadow: 0 0 0 1px var(--elf-green),
+              0 4px 15px rgba(76, 175, 132, 0.1);
+}
+
+/* Festive decorative elements */
+.survey-header::before,
+.survey-header::after {
+  content: none;
+}
+
+/* Add festive focus states */
+.survey-button:focus,
+.option-card:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--santa-red),
+              0 0 0 6px rgba(255, 70, 70, 0.2);
+}
+
+/* Add holiday icons to options */
+.option-card::before {
+  content: none;
+}
+
+/* Animation keyframes */
+@keyframes snowfall {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100px 100px;
+  }
+}
+
+/* Add some sparkle to selected options */
+.option-card.selected {
+  /* Keep existing styles... */
+  position: relative;
+  overflow: hidden;
+}
+
+.option-card.selected::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.8) 10%,
+    transparent 20%
+  );
+  background-size: 20px 20px;
+  animation: sparkle 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes sparkle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Update title styling */
+.survey-header {
+  font-size: 2.5rem;
+  font-weight: 800;  /* Extra bold */
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--santa-red), #FF6B6B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+/* Make description text larger and centered */
+.survey-container p {
+  font-size: 1.25rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--night-blue);
+}
+
+/* Container for options to ensure proper spacing */
+.options-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Center buttons */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+/* Update trait tags styling */
+.traits-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.trait-tag {
+  background: rgba(76, 175, 132, 0.1);
+  color: var(--elf-green);
+  border: 1px solid rgba(76, 175, 132, 0.2);
+  backdrop-filter: blur(4px);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+ 

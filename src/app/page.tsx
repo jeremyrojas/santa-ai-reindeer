@@ -64,11 +64,11 @@ export default function Home() {
 
   if (!started) {
     return (
-      <div className="quiz-container">
-        <h1 className="quiz-header">{INTRO_TEXT.title}</h1>
-        <p className="quiz-description">{INTRO_TEXT.description}</p>
-        <div className="text-center">
-          <button onClick={handleStart} className="start-button">
+      <div className="survey-container">
+        <h1 className="survey-header">{INTRO_TEXT.title}</h1>
+        <p>{INTRO_TEXT.description}</p>
+        <div className="button-container">
+          <button onClick={handleStart} className="survey-button">
             {INTRO_TEXT.startButton}
           </button>
         </div>
@@ -79,14 +79,14 @@ export default function Home() {
   if (result) {
     const reindeerResult = RESULTS[result as keyof typeof RESULTS];
     return (
-      <div className="quiz-container result-container">
-        <h2 className="result-title">{reindeerResult.title}</h2>
-        <div className="traits-list">
+      <div className="survey-container">
+        <h2 className="survey-header">{reindeerResult.title}</h2>
+        <div className="traits-container">
           {reindeerResult.traits.map((trait, index) => (
             <span key={index} className="trait-tag">{trait}</span>
           ))}
         </div>
-        <p className="result-description">{reindeerResult.description}</p>
+        <p>{reindeerResult.description}</p>
         
         <div className="share-section">
           <button 
@@ -149,9 +149,11 @@ export default function Home() {
           )}
         </div>
         
-        <button onClick={handleRetake} className="retake-button">
-          {END_TEXT.retakeButton}
-        </button>
+        <div className="button-container">
+          <button onClick={handleRetake} className="survey-button">
+            {END_TEXT.retakeButton}
+          </button>
+        </div>
       </div>
     );
   }
@@ -162,27 +164,21 @@ export default function Home() {
   const progress = (currentQuestion / QUIZ_CONFIG.totalQuestions) * 100;
 
   return (
-    <div className="quiz-container">
-      {QUIZ_CONFIG.showQuestionNumber && (
-        <div className="question-number">
-          Question {currentQuestion} of {QUIZ_CONFIG.totalQuestions}
-        </div>
-      )}
-      
+    <div className="survey-container">
       {QUIZ_CONFIG.showProgressBar && (
         <div className="progress-bar">
           <div className="progress-fill" style={{ width: `${progress}%` }} />
         </div>
       )}
 
-      <h2 className="question-text">{question.text}</h2>
+      <h2 className="survey-header">{question.text}</h2>
       
-      <div>
+      <div className="options-container">
         {question.options.map((option) => (
           <button
             key={option.id}
             onClick={() => handleAnswer(question.id, option.id)}
-            className={`option-button ${answers[question.id] === option.id ? 'selected' : ''}`}
+            className={`option-card ${answers[question.id] === option.id ? 'selected' : ''}`}
           >
             {option.text}
           </button>

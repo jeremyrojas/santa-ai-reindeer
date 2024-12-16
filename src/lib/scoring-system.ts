@@ -128,12 +128,14 @@ export function calculateResult(answers: Record<number, string>): string {
     return 'DANCER';
   }
 
-  // BLITZEN check - strong speed with community balance
+ // BLITZEN check - strong speed with community balance
   if (
-    scores.speed >= 6 &&
+    scores.speed >= 4 && // Lower speed minimum
     scores.community >= 4 &&
-    earlyACount >= 2 && // Ensure early speed presence
-    Math.abs(scores.speed - scores.community) <= 4
+    earlyACount >= 1 && // Only require one early A to show speed focus
+    Math.abs(scores.speed - scores.community) <= 4 &&
+    // Add condition to prevent Dasher overlap
+    scores.community + scores.social >= 4 // Ensure significant community/social presence
   ) {
     return 'BLITZEN';
   }

@@ -1,6 +1,6 @@
-# Santa's AI-Powered Reindeer Quiz
+# Santa's AI Coding Reindeer Quiz
 
-A fun, interactive quiz to discover which of Santa's AI-powered reindeer matches your builder personality! Built with Next.js, TypeScript, and Tailwind CSS.
+A fun, interactive quiz to discover which of Santa's AI Coding reindeer matches your builder personality! Built with Next.js, TypeScript, and Tailwind CSS.
 
 ## Features
 

@@ -8,17 +8,50 @@
   --night-blue: #1B3F8B;
 }
 
-.survey-container {
-  /* Playful snow-like background */
-  background: linear-gradient(135deg, 
-    var(--ice-blue) 0%, 
-    rgba(76, 175, 132, 0.05) 100%  /* Very subtle green tint */
+/* Add this to create the main gradient background */
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, 
+    #4AA9FF 0%,    /* Deeper sky blue at top */
+    #87CEFA 50%,   /* Light sky blue in middle */
+    #B7E4FF 100%   /* Very light blue at bottom */
   );
+  margin: 0;
+  background-attachment: fixed; /* Prevents gradient from scrolling */
+}
+
+/* Add subtle animated snow overlay */
+.snow-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.95) 50%, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 50px 160px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 90px 40px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0));
+  animation: snow 10s linear infinite;
+}
+
+@keyframes snow {
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+  }
+  100% {
+    background-position: 500px 1000px, 400px 400px, 300px 300px, 200px 200px;
+  }
+}
+
+/* Update the container styles for better contrast */
+.survey-container {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
   border-radius: 20px;
   padding: 2rem;
-  
-  /* Soft shadow for depth */
-  box-shadow: 0 8px 32px rgba(27, 63, 139, 0.1);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
   position: relative;
   max-width: 800px;
   margin: 2rem auto;

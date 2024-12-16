@@ -54,7 +54,13 @@ body {
   box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
   position: relative;
   max-width: 800px;
-  margin: 2rem auto;
+  width: auto;
+  
+  /* Center on desktop while maintaining responsive margins */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .survey-container::before {
@@ -142,31 +148,31 @@ body {
   /* Replace stark white with frosted glass effect */
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid transparent;
   border-radius: 12px;
   
   /* Subtle shadow */
   box-shadow: 0 2px 10px rgba(27, 63, 139, 0.05);
   
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease, border-color 0.2s ease;
   position: relative;
   overflow: hidden;
 }
 
 .option-card:hover {
   background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(255, 70, 70, 0.3);
+  border-color: rgba(76, 175, 132, 0.5);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(27, 63, 139, 0.1);
+  box-shadow: 0 4px 15px rgba(76, 175, 132, 0.15);
 }
 
 .option-card.selected {
-  background: rgba(76, 175, 132, 0.08);  /* Very light green */
-  border-color: var(--elf-green);
+  background: rgba(76, 175, 132, 0.1);
+  border: 2px solid var(--elf-green);
   font-weight: 600;
   box-shadow: 0 0 0 1px var(--elf-green),
-              0 4px 15px rgba(76, 175, 132, 0.1);
+              0 4px 15px rgba(76, 175, 132, 0.2);
 }
 
 /* Festive decorative elements */
@@ -179,8 +185,8 @@ body {
 .survey-button:focus,
 .option-card:focus {
   outline: none;
-  box-shadow: 0 0 0 3px var(--santa-red),
-              0 0 0 6px rgba(255, 70, 70, 0.2);
+  box-shadow: 0 0 0 3px var(--elf-green),
+              0 0 0 6px rgba(76, 175, 132, 0.2);
 }
 
 /* Add holiday icons to options */
@@ -282,5 +288,31 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-weight: 600;
+}
+
+/* Add responsive padding adjustments */
+@media (max-width: 840px) { /* Slightly larger breakpoint to account for margins */
+  .survey-container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .survey-container {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    padding: 1.25rem;
+  }
+  
+  .survey-header {
+    font-size: 2rem;
+  }
+  
+  .option-card {
+    padding: 1rem 1.25rem;
+    margin: 0.5rem 0;
+  }
 }
  

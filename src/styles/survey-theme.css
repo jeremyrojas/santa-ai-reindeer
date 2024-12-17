@@ -30,17 +30,14 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 2;
   background-image: 
     radial-gradient(3px 3px at 20px 30px, rgba(255, 255, 255, 0.95) 50%, rgba(0, 0, 0, 0)),
     radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)),
     radial-gradient(4px 4px at 50px 160px, rgba(255, 255, 255, 0.85) 50%, rgba(0, 0, 0, 0)),
     radial-gradient(2px 2px at 90px 40px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)),
     radial-gradient(2px 2px at 130px 80px, rgba(255, 255, 255, 0.85) 50%, rgba(0, 0, 0, 0)),
-    radial-gradient(3px 3px at 160px 120px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)),
-    radial-gradient(2px 2px at 200px 60px, rgba(255, 255, 255, 0.85) 50%, rgba(0, 0, 0, 0)),
-    radial-gradient(4px 4px at 240px 170px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)),
-    radial-gradient(2px 2px at 280px 90px, rgba(255, 255, 255, 0.95) 50%, rgba(0, 0, 0, 0)),
-    radial-gradient(3px 3px at 320px 130px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0));
+    radial-gradient(3px 3px at 160px 120px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0));
   animation: snow 20s linear infinite;
 }
 
@@ -65,14 +62,12 @@ body {
   padding: 2rem;
   box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
   position: relative;
+  z-index: 1;
   max-width: 800px;
-  width: auto;
+  width: calc(100% - 2rem);
   
   /* Center on desktop while maintaining responsive margins */
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin: 2rem auto;
 }
 
 .survey-container::before {
@@ -166,18 +161,17 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
+  z-index: 3;
   font-family: var(--font-family);
   -webkit-tap-highlight-color: transparent;
-  border: 2px solid transparent;
+  border: none;
   box-shadow: 0 2px 8px rgba(76, 175, 132, 0.05);
 }
 
 .option-card:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(76, 175, 132, 0.15); /* Using --elf-green with opacity */
   transform: translateY(-2px);
-  border-color: var(--elf-green);
-  box-shadow: 0 4px 16px rgba(76, 175, 132, 0.2),
-              0 0 0 2px rgba(76, 175, 132, 0.1);
+  box-shadow: 0 4px 16px rgba(76, 175, 132, 0.15);
 }
 
 /* Make the active state very obvious for testing */
@@ -185,7 +179,6 @@ body {
   background: var(--elf-green) !important;
   transform: scale(0.96);
   color: white;
-  border-color: transparent;
   box-shadow: 0 0 12px rgba(76, 175, 132, 0.3);
 }
 
@@ -193,6 +186,7 @@ body {
 .option-card:focus {
   outline: none;
   background: rgba(255, 255, 255, 0.9);
+  border: none;
 }
 
 /* Festive decorative elements */
@@ -236,6 +230,8 @@ body {
   text-align: center;
   letter-spacing: -0.02em;
   white-space: pre-line; /* This allows us to respect line breaks */
+  position: relative;
+  z-index: 3;
 }
 
 /* Add specific time display styling */
@@ -254,10 +250,11 @@ body {
   line-height: 1.5;
   font-weight: 600;
   text-align: center;
-  margin: 0.75rem auto 2rem auto;
+  margin: 1.5rem auto;
   color: var(--night-blue);
   padding: 1.5rem;
-  max-width: 90%;
+  width: 100%;
+  max-width: 600px;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
   border-radius: 16px;
@@ -317,18 +314,18 @@ body {
 }
 
 /* Add responsive padding adjustments */
-@media (max-width: 840px) { /* Slightly larger breakpoint to account for margins */
+@media (max-width: 840px) {
   .survey-container {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    width: calc(100% - 1.5rem);
+    margin: 1.5rem auto;
     padding: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .survey-container {
-    margin-left: 0.75rem;
-    margin-right: 0.75rem;
+    width: calc(100% - 1rem);
+    margin: 1rem auto;
     padding: 1.25rem;
   }
   
@@ -342,9 +339,9 @@ body {
   }
 
   .survey-container p {
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem 0 1.5rem 0;
+    font-size: 1rem;
+    padding: 1rem;
+    margin: 1rem auto;
   }
 }
 
@@ -357,6 +354,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  z-index: 3;
 }
 
 .question-number-text {
@@ -386,6 +384,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 0 2rem;
+  z-index: 2;
 }
 
 .ornament {
@@ -393,6 +392,7 @@ body {
   font-size: 1.2rem;
   animation: twinkle 2s infinite ease-in-out;
   opacity: 0.8;
+  z-index: 2;
 }
 
 .ornament.left {
@@ -428,7 +428,7 @@ body {
 
   .question-number-ornaments {
     max-width: 200px;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
 
   .ornament {
@@ -586,6 +586,70 @@ body {
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+/* Add or update these styles */
+.question-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 24px;
+  margin: 16px 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 20px;
+  max-width: 300px;
+  margin: 1rem auto;
+}
+
+.question-count {
+  color: var(--night-blue);
+  font-weight: 600;
+  font-size: 1rem;
+  z-index: 2;
+}
+
+.snowflake {
+  font-size: 20px;
+  z-index: 2;
+  animation: snowflakeFloat 2s ease-in-out infinite;
+}
+
+.snowflake:first-child {
+  animation-delay: 0s;
+}
+
+.snowflake:last-child {
+  animation-delay: 1s;
+}
+
+@keyframes snowflakeFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 480px) {
+  .question-header {
+    gap: 8px;
+    padding: 6px 16px;
+    max-width: 250px;
+  }
+
+  .snowflake {
+    font-size: 16px;
+  }
+
+  .question-count {
+    font-size: 0.9rem;
   }
 }
  

@@ -31,19 +31,29 @@ body {
   height: 100%;
   pointer-events: none;
   background-image: 
-    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.95) 50%, rgba(0, 0, 0, 0)),
+    radial-gradient(3px 3px at 20px 30px, rgba(255, 255, 255, 0.95) 50%, rgba(0, 0, 0, 0)),
     radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)),
-    radial-gradient(2px 2px at 50px 160px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)),
-    radial-gradient(2px 2px at 90px 40px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0));
-  animation: snow 10s linear infinite;
+    radial-gradient(4px 4px at 50px 160px, rgba(255, 255, 255, 0.85) 50%, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 90px 40px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 130px 80px, rgba(255, 255, 255, 0.85) 50%, rgba(0, 0, 0, 0)),
+    radial-gradient(3px 3px at 160px 120px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 200px 60px, rgba(255, 255, 255, 0.85) 50%, rgba(0, 0, 0, 0)),
+    radial-gradient(4px 4px at 240px 170px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 280px 90px, rgba(255, 255, 255, 0.95) 50%, rgba(0, 0, 0, 0)),
+    radial-gradient(3px 3px at 320px 130px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0));
+  animation: snow 20s linear infinite;
 }
 
 @keyframes snow {
   0% {
-    background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+    background-position: 
+      0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px,
+      0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
   }
   100% {
-    background-position: 500px 1000px, 400px 400px, 300px 300px, 200px 200px;
+    background-position: 
+      500px 1000px, 400px 400px, 300px 600px, 200px 800px, 450px 500px,
+      550px 750px, 350px 850px, 250px 650px, 150px 750px, 600px 900px;
   }
 }
 
@@ -343,6 +353,10 @@ body {
   text-align: center;
   margin-bottom: 1.5rem;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .question-number-text {
@@ -353,38 +367,73 @@ body {
   background: rgba(255, 255, 255, 0.8);
   padding: 0.5rem 1.5rem;
   border-radius: 20px;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   backdrop-filter: blur(4px);
   border: 2px solid rgba(76, 175, 132, 0.2);
+  position: relative;
+  z-index: 1;
 }
 
 .question-number-ornaments {
   position: absolute;
   width: 100%;
+  max-width: 300px;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   pointer-events: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
 }
 
 .ornament {
-  position: absolute;
+  position: relative;
   font-size: 1.2rem;
   animation: twinkle 2s infinite ease-in-out;
+  opacity: 0.8;
 }
 
 .ornament.left {
-  left: 25%;
   animation-delay: 0s;
+  margin-right: auto;
 }
 
 .ornament.right {
-  right: 25%;
   animation-delay: 1s;
+  margin-left: auto;
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.5; transform: scale(0.9); }
-  50% { opacity: 1; transform: scale(1.1); }
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: scale(0.9) translateY(0); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.1) translateY(-2px); 
+  }
+}
+
+@media (max-width: 480px) {
+  .question-number {
+    gap: 0.5rem;
+  }
+
+  .question-number-text {
+    font-size: 1rem;
+    padding: 0.4rem 1.2rem;
+  }
+
+  .question-number-ornaments {
+    max-width: 200px;
+    padding: 0 1rem;
+  }
+
+  .ornament {
+    font-size: 1rem;
+  }
 }
 
 /* Share Modal Styling */

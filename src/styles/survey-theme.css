@@ -372,14 +372,14 @@ body {
 .question-number-ornaments {
   position: absolute;
   width: 100%;
-  max-width: 300px;
+  max-width: 280px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
   display: flex;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 1rem;
   z-index: 2;
 }
 
@@ -423,12 +423,24 @@ body {
   }
 
   .question-number-ornaments {
-    max-width: 200px;
+    max-width: 240px;
     padding: 0 0.5rem;
   }
 
   .ornament {
     font-size: 1rem;
+  }
+}
+
+/* Add smaller screen support */
+@media (max-width: 375px) {
+  .question-number-ornaments {
+    max-width: 200px;
+  }
+  
+  .question-number-text {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
   }
 }
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { INTRO_TEXT, QUESTIONS, RESULTS, QUIZ_CONFIG, END_TEXT } from '@/lib/quiz-content';
+import { INTRO_TEXT, QUESTIONS, RESULTS, QUIZ_CONFIG } from '@/lib/quiz-content';
 import { calculateResult } from '@/lib/scoring-system';
 import { ResultCard } from '@/components/ResultCard';
 

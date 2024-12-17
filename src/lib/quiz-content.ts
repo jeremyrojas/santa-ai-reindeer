@@ -1,6 +1,6 @@
 export const INTRO_TEXT = {
-  title: "Which of Santa's AI-Powered Reindeer Are You?",
-  description: "Find out which of Santa's AI-Powered reindeer matches your style!",
+  title: "Which of Santa's AI Coding Reindeer Are You?",
+  description: "Find out which of Santa's AI Coding reindeer matches your style!",
   startButton: "Start the Quiz",
   preQuizText: "Answer honestly - the workshop's most advanced matchmaking magic will reveal your true reindeer spirit..."
 };
@@ -8,7 +8,7 @@ export const INTRO_TEXT = {
 export const QUESTIONS = [
   {
     id: 1,
-    text: "When you get an amazing app idea at 3 AM, you:",
+    text: "When you get an amazing app idea\nat 3 AM, you:",
     options: [
       { id: "A", text: "Start building immediately - sleep is for January" },
       { id: "B", text: "Add it to your color-coded Notion with 17 subpages" },

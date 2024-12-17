@@ -6,6 +6,7 @@
   --ice-blue: #E8F4FF;
   --snow-white: #FFFFFF;
   --night-blue: #1B3F8B;
+  --font-family: 'Nunito', system-ui, -apple-system, sans-serif;
 }
 
 /* Add this to create the main gradient background */
@@ -18,6 +19,7 @@ body {
   );
   margin: 0;
   background-attachment: fixed; /* Prevents gradient from scrolling */
+  font-family: var(--font-family);
 }
 
 /* Add subtle animated snow overlay */
@@ -92,6 +94,10 @@ body {
   
   /* Playful hover effect */
   transition: transform 0.2s ease;
+  font-family: var(--font-family);
+  font-size: 1.125rem;
+  line-height: 1.5;
+  font-weight: 600;
 }
 
 .question-card:hover {
@@ -99,25 +105,26 @@ body {
 }
 
 .survey-button {
-  background: var(--santa-red);
+  background: var(--elf-green);
   color: var(--snow-white);
   padding: 12px 24px;
   border-radius: 25px;
   border: none;
-  font-weight: bold;
+  font-weight: 700;
+  font-family: var(--font-family);
   
   /* Festive gradient */
-  background: linear-gradient(135deg, var(--santa-red), #FF6B6B);
+  background: linear-gradient(135deg, var(--elf-green), #6FCF9D);
   
   /* Playful shadow */
-  box-shadow: 0 4px 15px rgba(255, 70, 70, 0.3);
+  box-shadow: 0 4px 15px rgba(76, 175, 132, 0.3);
   
   transition: all 0.2s ease;
 }
 
 .survey-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 70, 70, 0.4);
+  box-shadow: 0 6px 20px rgba(76, 175, 132, 0.4);
 }
 
 /* Progress bar styling */
@@ -141,7 +148,6 @@ body {
   display: block;
   width: 100%;
   text-align: left;
-  font-size: 1.125rem;
   padding: 1.25rem 1.5rem;
   margin: 0.75rem 0;
   
@@ -158,6 +164,7 @@ body {
   transition: all 0.2s ease, border-color 0.2s ease;
   position: relative;
   overflow: hidden;
+  font-family: var(--font-family);
 }
 
 .option-card:hover {
@@ -239,19 +246,33 @@ body {
 
 /* Update title styling */
 .survey-header {
+  font-family: var(--font-family);
   font-size: 2.5rem;
-  font-weight: 800;  /* Extra bold */
+  font-weight: 800;
   line-height: 1.2;
   margin-bottom: 1.5rem;
   background: linear-gradient(135deg, var(--santa-red), #FF6B6B);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
+  letter-spacing: -0.02em;
+  white-space: pre-line; /* This allows us to respect line breaks */
+}
+
+/* Add specific time display styling */
+.survey-header .time {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 2.8rem; /* Slightly larger for emphasis */
+  font-weight: 900; /* Extra bold for the time */
+  letter-spacing: -0.03em;
 }
 
 /* Make description text larger and centered */
 .survey-container p {
+  font-family: var(--font-family);
   font-size: 1.25rem;
+  line-height: 1.6;
   text-align: center;
   margin-bottom: 2rem;
   color: var(--night-blue);
@@ -287,7 +308,8 @@ body {
   backdrop-filter: blur(4px);
   padding: 0.5rem 1rem;
   border-radius: 20px;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: var(--font-family);
 }
 
 /* Add responsive padding adjustments */
@@ -314,5 +336,54 @@ body {
     padding: 1rem 1.25rem;
     margin: 0.5rem 0;
   }
+}
+
+/* Question number styling */
+.question-number {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.question-number-text {
+  font-family: var(--font-family);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--elf-green);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  display: inline-block;
+  backdrop-filter: blur(4px);
+  border: 2px solid rgba(76, 175, 132, 0.2);
+}
+
+.question-number-ornaments {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.ornament {
+  position: absolute;
+  font-size: 1.2rem;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+.ornament.left {
+  left: 25%;
+  animation-delay: 0s;
+}
+
+.ornament.right {
+  right: 25%;
+  animation-delay: 1s;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
 }
  

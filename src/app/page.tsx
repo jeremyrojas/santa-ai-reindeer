@@ -171,6 +171,16 @@ export default function Home() {
         </div>
       )}
 
+      {QUIZ_CONFIG.showQuestionNumber && (
+        <div className="question-number">
+          <span className="question-number-text">Question {currentQuestion} of {QUIZ_CONFIG.totalQuestions}</span>
+          <div className="question-number-ornaments">
+            <span className="ornament left">❄️</span>
+            <span className="ornament right">❄️</span>
+          </div>
+        </div>
+      )}
+
       <h2 className="survey-header">{question.text}</h2>
       
       <div className="options-container">

@@ -10,20 +10,36 @@ export default function Home() {
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [result, setResult] = useState<string | null>(null);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleStart = () => {
     setStarted(true);
     setCurrentQuestion(1);
   };
 
-  const handleAnswer = (questionId: number, answerId: string) => {
+  const handleQuestionChange = (questionId: number, answerId: string) => {
     setAnswers(prev => ({ ...prev, [questionId]: answerId }));
-    
     if (questionId === QUIZ_CONFIG.totalQuestions) {
       const reindeerResult = calculateResult(answers);
       setResult(reindeerResult);
     } else {
       setCurrentQuestion(questionId + 1);
+    }
+  };
+
+  const handleAnswer = (questionId: number, answerId: string) => {
+    if (window.innerWidth <= 480) {
+      setIsTransitioning(true);
+      if (!isTransitioning) {
+        requestAnimationFrame(() => {
+          handleQuestionChange(questionId, answerId);
+          requestAnimationFrame(() => {
+            setIsTransitioning(false);
+          });
+        });
+      }
+    } else {
+      handleQuestionChange(questionId, answerId);
     }
   };
 

@@ -644,26 +644,3 @@ body {
     font-size: 0.9rem;
   }
 }
-
-/* ios-text-fix START */
-@supports (-webkit-touch-callout: none) {
-  .option-card {
-    /* Text wrapping fixes */
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-    
-    /* Font rendering */
-    text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    
-    /* Content height */
-    height: auto;
-    min-height: auto;
-    
-    /* Container behavior */
-    display: block;
-    width: 100%;
-  }
-}
-/* ios-text-fix END */

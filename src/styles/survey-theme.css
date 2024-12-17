@@ -169,7 +169,7 @@ body {
 }
 
 .option-card:hover {
-  background: rgba(76, 175, 132, 0.15); /* Using --elf-green with opacity */
+  background: rgba(76, 175, 132, 0.15); /* Light elf-green background */
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(76, 175, 132, 0.15);
 }
@@ -182,13 +182,6 @@ body {
   box-shadow: 0 0 12px rgba(76, 175, 132, 0.3);
 }
 
-/* Remove focus outline and use background instead */
-.option-card:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-}
-
 /* Festive decorative elements */
 .survey-header::before,
 .survey-header::after {
@@ -199,7 +192,6 @@ body {
 .survey-button:focus,
 .option-card:focus {
   outline: none;
-  box-shadow: 0 4px 15px rgba(76, 175, 132, 0.15);
 }
 
 /* Add holiday icons to options */

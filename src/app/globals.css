@@ -28,12 +28,23 @@ body {
 }
 
 .option-button {
-  @apply w-full text-left p-4 mb-4 rounded-xl border-2 border-gray-200 hover:border-red-400 
-         transition-all duration-200 bg-white hover:bg-red-50;
+  @apply w-full text-left p-4 mb-4 rounded-xl bg-white/90
+         transition-all duration-150 relative;
 }
 
-.option-button.selected {
-  @apply border-red-500 bg-red-50;
+.option-button:hover {
+  @apply bg-white transform -translate-y-0.5;
+}
+
+.option-button:active {
+  @apply scale-[0.98] bg-emerald-100;
+}
+
+.option-button:active::after {
+  content: '';
+  @apply absolute inset-0 rounded-xl pointer-events-none;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, transparent 60%);
+  opacity: 0.6;
 }
 
 .progress-bar {

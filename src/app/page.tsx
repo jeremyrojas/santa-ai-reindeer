@@ -188,7 +188,7 @@ export default function Home() {
           <button
             key={option.id}
             onClick={() => handleAnswer(question.id, option.id)}
-            className={`option-card ${answers[question.id] === option.id ? 'selected' : ''}`}
+            className="option-card"
           >
             {option.text}
           </button>

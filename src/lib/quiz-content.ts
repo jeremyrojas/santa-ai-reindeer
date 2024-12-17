@@ -1,6 +1,6 @@
 export const INTRO_TEXT = {
-  title: "Which of Santa's AI Coding Reindeer Are You?",
-  description: "Find out which of Santa's AI Coding reindeer matches your style!",
+  title: "Which of Santa's AI Builder Reindeer Are You?",
+  description: "Find out which of Santa's AI Builder reindeer matches your style!",
   startButton: "Start the Quiz",
   preQuizText: "Answer honestly - the workshop's most advanced matchmaking magic will reveal your true reindeer spirit..."
 };

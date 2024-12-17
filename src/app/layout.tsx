@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 import '../styles/survey-theme.css'
 
 export const metadata: Metadata = {
-  title: "Santa's AI Coding Reindeer Quiz",
-  description: 'Find out which of Santa\'s AI Coding reindeer matches your style!',
+  title: "Santa's AI Builder Reindeer Quiz",
+  description: 'Find out which of Santa\'s AI Builder reindeer matches your style!',
 }
 
 export default function RootLayout({

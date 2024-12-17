@@ -284,8 +284,9 @@ body {
   font-size: 1.25rem;
   line-height: 1.6;
   text-align: center;
-  margin-bottom: 2rem;
+  margin: 0.75rem 0 2rem 0;
   color: var(--night-blue);
+  padding: 0.5rem 1rem;
 }
 
 /* Container for options to ensure proper spacing */
@@ -345,6 +346,12 @@ body {
   .option-card {
     padding: 1rem 1.25rem;
     margin: 0.5rem 0;
+  }
+
+  .survey-container p {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0 1.5rem 0;
   }
 }
 

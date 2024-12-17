@@ -10,36 +10,19 @@ export default function Home() {
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [result, setResult] = useState<string | null>(null);
   const [showShareModal, setShowShareModal] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleStart = () => {
     setStarted(true);
     setCurrentQuestion(1);
   };
 
-  const handleQuestionChange = (questionId: number, answerId: string) => {
+  const handleAnswer = (questionId: number, answerId: string) => {
     setAnswers(prev => ({ ...prev, [questionId]: answerId }));
     if (questionId === QUIZ_CONFIG.totalQuestions) {
       const reindeerResult = calculateResult(answers);
       setResult(reindeerResult);
     } else {
       setCurrentQuestion(questionId + 1);
-    }
-  };
-
-  const handleAnswer = (questionId: number, answerId: string) => {
-    if (window.innerWidth <= 480) {
-      setIsTransitioning(true);
-      if (!isTransitioning) {
-        requestAnimationFrame(() => {
-          handleQuestionChange(questionId, answerId);
-          requestAnimationFrame(() => {
-            setIsTransitioning(false);
-          });
-        });
-      }
-    } else {
-      handleQuestionChange(questionId, answerId);
     }
   };
 
@@ -199,7 +182,7 @@ export default function Home() {
 
       <h2 className="survey-header">{question.text}</h2>
       
-      <div className="options-container">
+      <div className="options-container" key={`question-${currentQuestion}`}>
         {question.options.map((option) => (
           <button
             key={option.id}

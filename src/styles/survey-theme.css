@@ -54,7 +54,7 @@ body {
   }
 }
 
-/* Update the container styles for better contrast */
+/* Base container styles - for landing and question cards */
 .survey-container {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
@@ -65,9 +65,23 @@ body {
   z-index: 1;
   max-width: 800px;
   width: calc(100% - 2rem);
-  
-  /* Center on desktop while maintaining responsive margins */
-  margin: 2rem auto;
+  margin: 1rem auto;
+}
+
+/* Results card specific styling */
+.survey-container:has(.reindeer-profile) {
+  padding: 2rem;
+  padding-top: 8rem;
+  margin: 1rem auto;
+  margin-top: 8rem;
+}
+
+.reindeer-profile {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: -180px auto 15px;
+  filter: drop-shadow(0 0 15px rgba(74, 169, 255, 0.3));
 }
 
 .survey-container::before {
@@ -219,7 +233,7 @@ body {
   font-size: 2.5rem;
   font-weight: 800;
   line-height: 1.2;
-  margin-bottom: 1.5rem;
+  margin-bottom: 12px;
   background: linear-gradient(135deg, var(--santa-red), #FF6B6B);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -228,6 +242,7 @@ body {
   white-space: pre-line; /* This allows us to respect line breaks */
   position: relative;
   z-index: 3;
+  margin-top: 0;
 }
 
 /* Add specific time display styling */
@@ -246,9 +261,9 @@ body {
   line-height: 1.5;
   font-weight: 600;
   text-align: center;
-  margin: 1.5rem auto;
+  margin: 0 auto 20px;
   color: var(--night-blue);
-  padding: 1.5rem;
+  padding: 16px;
   width: 100%;
   max-width: 600px;
   background: rgba(255, 255, 255, 0.85);
@@ -286,16 +301,16 @@ body {
 .button-container {
   display: flex;
   justify-content: center;
-  margin: 2rem 0;
+  margin: 0 0 8px 0;
 }
 
 /* Update trait tags styling */
 .traits-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 8px;
   justify-content: center;
-  margin: 1.5rem 0;
+  margin: 0 0 16px 0;
 }
 
 .trait-tag {
@@ -309,35 +324,45 @@ body {
   font-family: var(--font-family);
 }
 
-/* Add responsive padding adjustments */
-@media (max-width: 840px) {
+/* Responsive adjustments - base container */
+@media (max-width: 480px) {
   .survey-container {
-    width: calc(100% - 1.5rem);
-    margin: 1.5rem auto;
     padding: 1.5rem;
+    margin: 1rem auto;
   }
 }
 
+/* Responsive adjustments - results card */
 @media (max-width: 480px) {
-  .survey-container {
-    width: calc(100% - 1rem);
+  .survey-container:has(.reindeer-profile) {
+    padding: 1.5rem;
+    padding-top: 7rem;
     margin: 1rem auto;
-    padding: 1.25rem;
-  }
-  
-  .survey-header {
-    font-size: 2rem;
-  }
-  
-  .option-card {
-    padding: 1rem 1.25rem;
-    margin: 0.5rem 0;
+    margin-top: 6rem;
   }
 
-  .survey-container p {
-    font-size: 1rem;
-    padding: 1rem;
-    margin: 1rem auto;
+  .reindeer-profile {
+    width: 180px;
+    height: 180px;
+    margin: -150px auto 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .survey-container {
+    padding: 1.25rem;
+  }
+
+  .survey-container:has(.reindeer-profile) {
+    padding: 1.25rem;
+    padding-top: 6rem;
+    margin-top: 5rem;
+  }
+
+  .reindeer-profile {
+    width: 160px;
+    height: 160px;
+    margin: -130px auto 10px;
   }
 }
 
@@ -659,4 +684,143 @@ body {
   .question-count {
     font-size: 0.9rem;
   }
+}
+
+.reindeer-profile {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: -180px auto 15px;
+  filter: drop-shadow(0 0 15px rgba(74, 169, 255, 0.3));
+}
+
+.reindeer-avatar {
+  border-radius: 50%;
+  border: 10px solid var(--snow-white);
+  box-shadow: 
+    0 0 0 6px var(--elf-green),
+    0 8px 25px rgba(0, 0, 0, 0.15);
+  background: var(--snow-white);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.reindeer-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 0 0 4px var(--elf-green),
+    0 8px 25px rgba(74, 169, 255, 0.2);
+}
+
+/* Remove snowflakes from profile */
+.reindeer-profile::before,
+.reindeer-profile::after {
+  display: none;
+}
+
+.result-description {
+  margin: 2rem auto;
+  max-width: 580px;
+}
+
+/* First, add a wrapper to match the structure */
+.share-button-wrapper {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 16px;
+  position: relative;
+}
+
+.share-button-primary {
+  background: linear-gradient(135deg, var(--santa-red), #FF6B6B);
+  color: var(--snow-white);
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(255, 70, 70, 0.2);
+  overflow: hidden;
+}
+
+/* Update to match the green button's mushed snow effect */
+.share-button-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 50% 50%, white 0%, transparent 8%),
+    radial-gradient(circle at 30% 20%, white 0%, transparent 6%),
+    radial-gradient(circle at 70% 40%, white 0%, transparent 10%);
+  background-size: 100px 100px;
+  animation: snowfall 20s linear infinite;
+  opacity: 0.4;
+  pointer-events: none;
+  border-radius: 30px;
+}
+
+.share-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 70, 70, 0.3);
+}
+
+/* Remove any old styles that might conflict */
+.share-button-primary::after {
+  display: none;
+}
+
+/* Keep the existing snowfall animation */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Add responsive adjustments */
+@media (max-width: 480px) {
+  .survey-container {
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+  }
+
+  .survey-container:has(.reindeer-profile) {
+    padding-top: 7rem;
+    margin-top: 5rem;
+  }
+
+  .reindeer-profile {
+    width: 180px;
+    height: 180px;
+    margin: -150px auto 25px;
+  }
+}
+
+@media (max-width: 375px) {
+  .survey-container {
+    margin: 1rem auto;
+    padding: 1.25rem;
+  }
+
+  .survey-container:has(.reindeer-profile) {
+    padding-top: 6rem;
+    margin-top: 4rem;
+  }
+
+  .reindeer-profile {
+    width: 160px;
+    height: 160px;
+    margin: -130px auto 20px;
+  }
+}
+
+/* Add specific padding only to container with reindeer profile */
+.survey-container:has(.reindeer-profile) {
+  padding-top: 8rem;
+  margin-top: 6rem;
 }

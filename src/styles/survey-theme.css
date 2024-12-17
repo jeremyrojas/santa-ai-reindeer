@@ -250,12 +250,36 @@ body {
 /* Make description text larger and centered */
 .survey-container p {
   font-family: var(--font-family);
-  font-size: 1.25rem;
-  line-height: 1.6;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  font-weight: 600;
   text-align: center;
-  margin: 0.75rem 0 2rem 0;
+  margin: 0.75rem auto 2rem auto;
   color: var(--night-blue);
-  padding: 0.5rem 1rem;
+  padding: 1.5rem;
+  max-width: 90%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  box-shadow: 
+    0 4px 6px rgba(255, 255, 255, 0.1),
+    0 1px 3px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.survey-container p::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(74, 169, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(76, 175, 132, 0.08) 0%, transparent 50%);
+  border-radius: 16px;
+  pointer-events: none;
 }
 
 /* Container for options to ensure proper spacing */

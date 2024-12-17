@@ -1,4 +1,4 @@
-# Santa's AI Builder Reindeer Quiz
+# Santa's AI Reindeer Quiz
 
 A fun, interactive quiz to discover which of Santa's AI Builder reindeer matches your builder personality! Built with Next.js, TypeScript, and Tailwind CSS.
 

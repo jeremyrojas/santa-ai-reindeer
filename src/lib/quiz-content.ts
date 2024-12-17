@@ -1,6 +1,6 @@
 export const INTRO_TEXT = {
-  title: "Which of Santa's AI Builder Reindeer Are You?",
-  description: "Find out which of Santa's AI Builder reindeer matches your style!",
+  title: "Which of Santa's AI Reindeer Are You?",
+  description: "Find out which of Santa's AI builder reindeer matches your style!",
   startButton: "Start the Quiz",
   preQuizText: "Answer honestly - the workshop's most advanced matchmaking magic will reveal your true reindeer spirit..."
 };
@@ -20,9 +20,9 @@ export const QUESTIONS = [
     id: 2,
     text: "Your AI tool gives you an error. You:",
     options: [
-      { id: "A", text: "Here's the error you just gave me. Please analyze STEP BY STEP why your last 3 attempts didn't work 🙃" },
-      { id: "B", text: "Time to investigate like a code detective on Christmas Eve" },
-      { id: "C", text: "Ask your AI builder community: 'Anyone else? (asking for a friend)'" },
+      { id: "A", text: "Here's the error you just gave me. Please analyze STEP BY STEP why your last 3 attempts didn't work" },
+      { id: "B", text: "Time to transform into Sherlock console.log() Holmes" },
+      { id: "C", text: "Quick Twitter check: 'Who else's AI woke up and chose chaos? (Asking for my error logs)'" },
       { id: "D", text: "Calmly pull out your backup plan (you knew this would happen)" }
     ]
   },
@@ -30,9 +30,9 @@ export const QUESTIONS = [
     id: 3,
     text: "Your AI-built project is almost ready to launch. You're:",
     options: [
-      { id: "A", text: "Already tweeting 'Some AI magic coming soon 👀'" },
+      { id: "A", text: "Already tweeting 'Some AI magic coming soon...'" },
       { id: "B", text: "Still testing in case someone tries to break it (you know they will)" },
-      { id: "C", text: "Sharing your launch in every community: 'Looking for alpha testers! 🚀'" },
+      { id: "C", text: "Sharing your launch in every community: 'Looking for alpha testers!'" },
       { id: "D", text: "Adding that one last feature (narrator: it wasn't the last feature)" }
     ]
   },
@@ -43,7 +43,7 @@ export const QUESTIONS = [
       { id: "A", text: "Turning caffeine into MVPs" },
       { id: "B", text: "Finding solutions in Stack Overflow posts from 2012" },
       { id: "C", text: "Making AI tools make sense for normal humans" },
-      { id: "D", text: "Keeping calm while juggling 5 AI tools at once" }
+      { id: "D", text: "Managing a stack of AI tools like a zen master" }
     ]
   },
   {
@@ -52,7 +52,7 @@ export const QUESTIONS = [
     options: [
       { id: "A", text: "Everything. All of them. (Is there a new one? Already signed up!)" },
       { id: "B", text: "The one with the best free trial (or cheapest subscription if we're being honest)" },
-      { id: "C", text: "Whatever Twitter called 'game-changing' this week" },
+      { id: "C", text: "Whatever my X feed called 'game-changing' this week" },
       { id: "D", text: "Tools that actually do what you tell them to (most of the time)" }
     ]
   },
@@ -62,7 +62,7 @@ export const QUESTIONS = [
     options: [
       { id: "A", text: "Already deployed three new features to the next project (sleep is overrated)" },
       { id: "B", text: "Write the world's most detailed documentation (future you will thank you)" },
-      { id: "C", text: "Make a celebratory thread: 'How We Built This (1/42) 🎉'" },
+      { id: "C", text: "Make a celebratory thread: 'How We Built This (1/17)'" },
       { id: "D", text: "Start planning v2.0 (so much for that break you promised yourself)" }
     ]
   },
@@ -70,10 +70,10 @@ export const QUESTIONS = [
     id: 7,
     text: "Your coding style is best described as:",
     options: [
-      { id: "A", text: "Sprint mode: coffee in, code out ⚡" },
-      { id: "B", text: "Methodical: every line has its place" },
-      { id: "C", text: "Social: turning pair programming into party programming! 💃" },
-      { id: "D", text: "Structured: following the master plan" }
+      { id: "A", text: "Sprint mode: coffee in, code out" },
+      { id: "B", text: "Methodical: your Git history belongs in a museum" },
+      { id: "C", text: "Social: turning pair programming into party programming!" },
+      { id: "D", text: "Structured: your code reads like prose that future you won't hate" }
     ]
   }
 ];
@@ -149,13 +149,13 @@ export const QUIZ_CONFIG = {
   showProgressBar: true,
   showQuestionNumber: true,
   allowBack: false,
-  shareBaseUrl: "https://your-quiz-url.com",
+  shareBaseUrl: "https://santa-ai-reindeer-quiz.vercel.app/",
   shareHashtag: "SantasAIReindeer"
 };
 
 export const END_TEXT = {
   preResult: "Now for the magic... 🎩✨",
-  sharePrompt: "Share your reindeer spirit with the world!",
+  sharePrompt: "Share your AI reindeer spirit with the world!",
   retakeButton: "Take the Quiz Again",
   footerText: "Remember: Every reindeer has their perfect project - find yours!"
-}; 
+};

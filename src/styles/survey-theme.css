@@ -168,11 +168,15 @@ body {
   box-shadow: 0 2px 8px rgba(76, 175, 132, 0.05);
 }
 
-.option-card:hover {
-  background: rgba(76, 175, 132, 0.15); /* Light elf-green background */
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(76, 175, 132, 0.15);
+/* hover-fix START - Only apply hover effect on devices that actually support hover */
+@media (hover: hover) {
+  .option-card:hover {
+    background: rgba(76, 175, 132, 0.15); /* Light elf-green background */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(76, 175, 132, 0.15);
+  }
 }
+/* hover-fix END */
 
 /* Make the active state very obvious for testing */
 .option-card:active {

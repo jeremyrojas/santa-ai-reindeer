@@ -38,24 +38,24 @@ export default function Home() {
     const resultData = result ? RESULTS[result as keyof typeof RESULTS] : null;
     if (!resultData) return;
 
-    const shareText = `${resultData.title} - ${resultData.description}`;
+    const shareText = resultData.shareText;
     const shareUrl = QUIZ_CONFIG.shareBaseUrl;
+    const hashtag = QUIZ_CONFIG.shareHashtag;
     
     switch (platform) {
       case 'twitter':
-        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`);
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}&hashtags=${hashtag}`);
         break;
       case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`);
-        break;
-      case 'linkedin':
-        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(resultData.title)}&summary=${encodeURIComponent(shareText)}`);
+        const fbHashtag = encodeURIComponent(hashtag);
+        const fbShareText = `${shareText}\n\n#${hashtag}`;
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&hashtag=%23${fbHashtag}&quote=${encodeURIComponent(fbShareText)}`);
         break;
       case 'whatsapp':
-        window.open(`https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`);
+        window.open(`https://wa.me/?text=${encodeURIComponent(`${shareText}\n\n#${hashtag} ${shareUrl}`)}`);
         break;
       case 'copy':
-        navigator.clipboard.writeText(`${shareText} ${shareUrl}`).then(() => {
+        navigator.clipboard.writeText(`${shareText}\n\n#${hashtag} ${shareUrl}`).then(() => {
           alert('Link copied to clipboard!');
         });
         break;

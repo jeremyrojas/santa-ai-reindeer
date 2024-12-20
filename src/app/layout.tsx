@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import '../styles/survey-theme.css'
 import { Nunito } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -37,6 +38,7 @@ export default function RootLayout({
       <body>
         <div className="snow-overlay" />
         {children}
+        <Analytics />
       </body>
     </html>
   )

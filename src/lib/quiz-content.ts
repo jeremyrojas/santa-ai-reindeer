@@ -149,8 +149,8 @@ export const QUIZ_CONFIG = {
   showProgressBar: true,
   showQuestionNumber: true,
   allowBack: false,
-  shareBaseUrl: "https://santa-ai-reindeer-quiz.vercel.app/",
-  shareHashtag: "SantasAIReindeer"
+  shareBaseUrl: "https://www.aireindeerquiz.com",
+  shareHashtag: "AIReindeerQuiz"
 };
 
 export const END_TEXT = {

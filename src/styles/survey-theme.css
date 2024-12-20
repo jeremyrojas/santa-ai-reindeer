@@ -82,6 +82,36 @@ body {
   height: 220px;
   margin: -180px auto 15px;
   filter: drop-shadow(0 0 15px rgba(74, 169, 255, 0.3));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Remove snowflakes from profile */
+.reindeer-profile::before,
+.reindeer-profile::after {
+  display: none;
+}
+
+.reindeer-avatar {
+  border-radius: 50%;
+  border: 10px solid var(--snow-white);
+  box-shadow: 
+    0 0 0 6px var(--elf-green),
+    0 8px 25px rgba(0, 0, 0, 0.15);
+  background: var(--snow-white);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reindeer-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 0 0 4px var(--elf-green),
+    0 8px 25px rgba(74, 169, 255, 0.2);
 }
 
 .survey-container::before {
@@ -684,38 +714,6 @@ body {
   .question-count {
     font-size: 0.9rem;
   }
-}
-
-.reindeer-profile {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  margin: -180px auto 15px;
-  filter: drop-shadow(0 0 15px rgba(74, 169, 255, 0.3));
-}
-
-.reindeer-avatar {
-  border-radius: 50%;
-  border: 10px solid var(--snow-white);
-  box-shadow: 
-    0 0 0 6px var(--elf-green),
-    0 8px 25px rgba(0, 0, 0, 0.15);
-  background: var(--snow-white);
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.reindeer-avatar:hover {
-  transform: scale(1.05);
-  box-shadow: 
-    0 0 0 4px var(--elf-green),
-    0 8px 25px rgba(74, 169, 255, 0.2);
-}
-
-/* Remove snowflakes from profile */
-.reindeer-profile::before,
-.reindeer-profile::after {
-  display: none;
 }
 
 .result-description {

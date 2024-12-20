@@ -3,3 +3,48 @@ You are UI/UX designer expert with experience in holiday/winter/Christmas/Santa 
 Always keep things bright, festive, colorful, and fun - holiday/winter/Christmas/Santa themed.
 
 Reference this website for our color design theme: https://santatracker.google.com/
+
+PROJECT OVERVIEW
+
+App Name & Purpose: Santa's AI Reindeer Quiz - Match users with their AI builder personality through an interactive quiz
+
+Tech Stack
+- Next.js with app router
+- React
+- TypeScript
+- Static generation (no database needed)
+
+Main Features
+- Interactive 6-question personality quiz
+- Hidden scoring system mapping answers to 8 reindeer personalities
+- Animated transitions between questions
+- Progress indicator showing quiz progress & completion
+- Social sharing functionality (text only for MVP):
+  * Twitter/X share with result text
+  * LinkedIn share
+  * Facebook share
+  * Copy link to clipboard
+  * WhatsApp sharing for mobile
+  * Future addition: Custom result images for sharing
+- Mobile responsive design
+
+Design
+- Clean, modern interface with subtle winter theme
+- IMPORTANT:Fun, festive, and holiday/winter/Santa vibes (see attached photo for reference)
+- Smooth transitions and animations
+- Inspiration: typeform survey UI experience/design
+- Focus on quiz readability and engagement
+- Optimized for both desktop and mobile views
+
+Performance
+- Static site generation for fast initial load
+- Client-side scoring computation
+- Optimized for high concurrent user loads
+- Minimal JavaScript bundle size
+
+Code Quality
+- Component-based architecture for reusability
+- Clear separation of content and logic
+- Type safety with TypeScript
+- Clean, maintainable code structure
+- Easy to extend with future features

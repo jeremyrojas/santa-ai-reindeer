@@ -822,3 +822,76 @@ body {
   padding-top: 8rem;
   margin-top: 6rem;
 }
+
+/* Results card and intro card profile styling */
+.survey-container.has-profile {
+  padding: 2rem;
+  padding-top: 8rem;
+  margin: 1rem auto;
+  margin-top: 8rem;
+}
+
+.reindeer-profile {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: -180px auto 15px;
+  filter: drop-shadow(0 0 15px rgba(74, 169, 255, 0.3));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Remove snowflakes from profile */
+.reindeer-profile::before,
+.reindeer-profile::after {
+  display: none;
+}
+
+.reindeer-avatar {
+  border-radius: 50%;
+  border: 10px solid var(--snow-white);
+  box-shadow: 
+    0 0 0 6px var(--elf-green),
+    0 8px 25px rgba(0, 0, 0, 0.15);
+  background: var(--snow-white);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reindeer-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 0 0 4px var(--elf-green),
+    0 8px 25px rgba(74, 169, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .survey-container.has-profile {
+    padding-top: 7rem;
+    margin-top: 5rem;
+  }
+
+  .reindeer-profile {
+    width: 180px;
+    height: 180px;
+    margin: -150px auto 25px;
+  }
+}
+
+@media (max-width: 375px) {
+  .survey-container.has-profile {
+    padding-top: 6rem;
+    margin-top: 4rem;
+  }
+
+  .reindeer-profile {
+    width: 160px;
+    height: 160px;
+    margin: -130px auto 20px;
+  }
+}

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { INTRO_TEXT, QUESTIONS, RESULTS, QUIZ_CONFIG } from '@/lib/quiz-content';
 import { calculateResult } from '@/lib/scoring-system';
 import { ResultCard } from '@/components/ResultCard';
+import Image from 'next/image';
 
 export default function Home() {
   const [started, setStarted] = useState(false);
@@ -64,7 +65,17 @@ export default function Home() {
 
   if (!started) {
     return (
-      <div className="survey-container">
+      <div className="survey-container has-profile">
+        <div className="reindeer-profile">
+          <Image 
+            src="/images/santa.png"
+            alt="Santa in his AI workshop with reindeer"
+            width={200}
+            height={200}
+            className="reindeer-avatar"
+            priority
+          />
+        </div>
         <h1 className="survey-header">{INTRO_TEXT.title}</h1>
         <p>{INTRO_TEXT.description}</p>
         <div className="button-container">

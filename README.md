@@ -4,7 +4,7 @@ A fun, interactive quiz to discover which of Santa's AI Builder reindeer matches
 
 ## Features
 
-- 🎅 6 engaging questions about your AI builder style
+- 🎅 7 engaging questions about your AI builder style
 - 🦌 8 unique reindeer personalities with detailed descriptions
 - 🎯 Smart scoring system that matches your traits
 - 🎨 Beautiful, responsive design with winter theme
@@ -19,6 +19,7 @@ A fun, interactive quiz to discover which of Santa's AI Builder reindeer matches
 - Tailwind CSS
 - Static Site Generation
 - Client-side scoring computation
+- Vercel Analytics for usage tracking
 
 ## Getting Started
 
@@ -50,6 +51,12 @@ src/
 ├── lib/
 │   ├── quiz-content.ts    # Quiz questions and results
 │   └── scoring-system.ts  # Scoring logic
+├── styles/               # Additional styles
+├── public/              # Static assets
+└── config files
+    ├── next.config.js   # Next.js configuration
+    ├── tailwind.config.ts # Tailwind configuration
+    └── tsconfig.json    # TypeScript configuration
 ```
 
 ## Deployment
@@ -59,6 +66,8 @@ The app is optimized for deployment on Vercel:
 1. Push your code to GitHub
 2. Import the project in Vercel
 3. Deploy!
+
+Analytics will automatically track usage in production.
 
 ## Contributing
 
